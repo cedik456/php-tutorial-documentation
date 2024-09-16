@@ -3,16 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Form Handling</title>
+    <link rel="stylesheet" href="css/form_handling.css">
 </head>
 <body>
+
+    
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Both First Name and Last Name cannot be empty!</p>
+        </div>
+    </div>
     
     <main>
-        <form action="/includes/form_handling.php" method="POST">
-            <label for="firstname">Firstname?</label>
+        <form action="includes/form_handling.php" method="POST">
+            <label for="firstname">Firstname</label>
             <input id="firstname" type="text" name="firstname" placeholder="Firstname...">
 
-            <label for="lastname">Lastname?</label>
+            <label for="lastname">Lastname</label>
             <input type="lastname" type="text" name="lastname" placeholder="Lastname...">
 
             <label for="favoritePet">Favorite Pet?</label>
@@ -23,7 +32,7 @@
                 <option value="bird">Bird</option>
             </select>
 
-            <button type="submit">Submit</button>
+            <button type="submit" name="submit">Submit</button>
         </form>
     </main>
     

@@ -1,31 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    <main>
-        <form action="/includes/form_handling.php" method="POST">
-            <label for="firstname">Firstname?</label>
-            <input id="firstname" type="text" name="firstname" placeholder="Firstname...">
+<?php
 
-            <label for="lastname">Lastname?</label>
-            <input type="lastname" type="text" name="lastname" placeholder="Lastname...">
+    // -- different ways of handling form submissions
 
-            <label for="favoritePet">Favorite Pet?</label>
-            <select id="favoritePet" name="favoritePet">
-                <option value="none">None</option>
-                <option value="dog">Dog</option>
-                <option value="cat">Car</option>
-                <option value="bird">Bird</option>
-            </select>
+    // var_dump($_SERVER["REQUEST_METHOD"]);
 
-            <button type="submit">Submit</button>
-        </form>
-    </main>
-    
-</body>
-</html>
+    // if(isset($_POST["submit"])) {  
+
+    // }
+
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        $firstName = htmlspecialchars($_POST["firstname"]);
+        $lastName = htmlspecialchars($_POST["lastname"]);
+        // $favoritePet = htmlspecialchars($_POST["favoritepet"]);
+
+        if(empty($firstName) && empty($lastName)) {
+            echo "<script>
+                document.getElementById('errorModal').style.display = 'flex';
+              </script>";
+        } else {
+            echo "These are the data that the user submitted";
+            echo "<br>";
+            echo $firstName;
+            echo "<br>";
+            echo $lastName;
+            echo "<br>";
+            echo $favoritePet;
+        }
+
+
+    } else {
+        header("Location: ../form.php");
+        exit();
+    }
+
+?>
