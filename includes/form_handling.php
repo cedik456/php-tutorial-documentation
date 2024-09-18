@@ -12,7 +12,7 @@
 
         $firstName = htmlspecialchars($_POST["firstname"]);
         $lastName = htmlspecialchars($_POST["lastname"]);
-        // $favoritePet = htmlspecialchars($_POST["favoritepet"]);
+        $favoritePet = htmlspecialchars($_POST["favoritePet"]);
 
         if(empty($firstName) && empty($lastName)) {
             echo "<script>

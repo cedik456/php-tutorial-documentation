@@ -7,14 +7,6 @@
     <link rel="stylesheet" href="css/form_handling.css">
 </head>
 <body>
-
-    
-    <div id="errorModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Both First Name and Last Name cannot be empty!</p>
-        </div>
-    </div>
     
     <main>
         <form action="includes/form_handling.php" method="POST">
