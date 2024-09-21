@@ -26,18 +26,18 @@
 
         // STATIC SCOPES
 
-        function myFunction() {
+        // function myFunction() {
 
-            static $staticVar = 0; // using these the function will be continued or shared with others
+        //     static $staticVar = 0; // using these the function will be continued or shared with others
 
-            $staticVar++;
+        //     $staticVar++;
 
-            return $staticVar;
-        }
+        //     return $staticVar;
+        // }
 
-        echo myFunction(); // Output: 1
-        echo myFunction(); // Output: 2
-        echo myFunction(); // Output: 3
+        // echo myFunction(); // Output: 1
+        // echo myFunction(); // Output: 2
+        // echo myFunction(); // Output: 3
     
     ?>
     
