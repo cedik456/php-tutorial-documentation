@@ -2,22 +2,20 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") { // Step 1: Check if the request method is POST
 
     // Step 2: Declare variables using POST superglobals
-    $username = $_POST["username"];
-    $pwd = $_POST["pwd"];
-    $email = $_POST["email"];
+    $userSearch = $_POST['usersearch'];
 
     try { // Step 3: Start try-catch block for error handling
 
         require_once("dbh.inc.php"); // Step 4: Include database connection
 
         // Step 5: Prepare SQL query
-        $query = "INSERT INTO Users (username, pwd, email) VALUES (:username, :pwd, :email);";
+        $query = "DELETE FROM Users WHERE username = :username AND pwd = :pwd ;";
+ 
         $stmt = $pdo->prepare($query); // Step 6: Prepare statement for binding values
 
         // Bind parameters to the prepared statement
         $stmt->bindParam(":username", $username);
         $stmt->bindParam(":pwd", $pwd); 
-        $stmt->bindParam(":email", $email);
 
         // Step 7: Execute the prepared statement and handle success or failure
         if ($stmt->execute()) {
@@ -40,3 +38,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Step 1: Check if the request meth
     header("Location: ../index.php");
     exit(); 
 }
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+</head>
+<body>
+
+
+    
+</body>
+</html>

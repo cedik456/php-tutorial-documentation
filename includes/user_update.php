@@ -11,7 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Step 1: Check if the request meth
         require_once("dbh.inc.php"); // Step 4: Include database connection
 
         // Step 5: Prepare SQL query
-        $query = "INSERT INTO Users (username, pwd, email) VALUES (:username, :pwd, :email);";
+        $query = "UPDATE Users SET username = :username, pwd = :pwd, email = :email WHERE user_id = 10;";
+ 
         $stmt = $pdo->prepare($query); // Step 6: Prepare statement for binding values
 
         // Bind parameters to the prepared statement
