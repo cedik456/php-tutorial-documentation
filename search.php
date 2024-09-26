@@ -1,35 +1,26 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") { // Step 1: Check if the request method is POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") { 
 
-    // Step 2: Declare variables using POST superglobals
     $userSearch = $_POST['usersearch'];
 
-    try { // Step 3: Start try-catch block for error handling
+    try { 
 
-        require_once("dbh.inc.php"); // Step 4: Include database connection
+        require_once("./includes/dbh.inc.php"); 
 
-        // Step 5: Prepare SQL query
-        $query = "DELETE FROM Users WHERE username = :username AND pwd = :pwd ;";
+        $query = "SELECT * FROM Comments WHERE username = :usersearch";
  
-        $stmt = $pdo->prepare($query); // Step 6: Prepare statement for binding values
+        $stmt = $pdo->prepare($query); 
 
-        // Bind parameters to the prepared statement
-        $stmt->bindParam(":username", $username);
-        $stmt->bindParam(":pwd", $pwd); 
+        $stmt->bindParam(":usersearch", $userSearch);
+    
+        $stmt->execute();
 
-        // Step 7: Execute the prepared statement and handle success or failure
-        if ($stmt->execute()) {
-            echo "<script>alert('New record created successfully');</script>"; 
-        } else {
-            echo "<script>alert('Error creating record!');</script>";
-        }
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
-        // Clean up
         $stmt = null;
         $pdo = null;
 
         // header("Location: ../index.php"); 
-        exit(); 
     } catch (PDOException $e) {
         die("Query Failed: " . $e->getMessage()); 
     }
@@ -49,6 +40,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Step 1: Check if the request meth
     <title>Search</title>
 </head>
 <body>
+
+    <h3>Search Results:</h3>
+    <?php
+        if (empty($results)) {
+            echo "<div>";
+            echo "<p>You have no comment!</p>";
+            echo "</div>";
+            echo '<a href="comment.php">Click here to add a comment</a>';
+        } else {
+            foreach ($results as $row) {
+                echo "Name: " . htmlspecialchars($row['username']) . "<br>";
+                echo "Comment: " . htmlspecialchars($row['comment_text']) . "<br>";
+                echo "Date: " . htmlspecialchars( $row['created_at']) . "<br> <br>"; 
+            }
+        }
+    ?>
 
 
     
